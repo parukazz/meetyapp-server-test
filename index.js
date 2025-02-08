@@ -9,14 +9,13 @@ import chatRoutes from "./routes/chat.js";
 dotenv.config();
 const app = express();
 
+app.use(
+  cors({ origin: "https://meetyapp-client-test.vercel.app", credentials: true })
+);
+app.options("*", cors()); // Handle preflight requests
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-app.use(
-  cors({
-    origin: "*",
-  })
-);
 
 // Routes
 app.use("/api/auth", authRoutes);
