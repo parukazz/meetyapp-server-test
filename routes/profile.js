@@ -452,7 +452,7 @@ router.get("/home/:userId", (req, res) => {
           galleryResults.forEach(({ profile_id, image }) => {
             if (!galleryMap[profile_id]) galleryMap[profile_id] = [];
             galleryMap[profile_id].push(
-              `http://localhost:5000/uploads/${image}`
+              `https://meetyapp-server-test-production.up.railway.app/uploads/${image}`
             );
           });
 
