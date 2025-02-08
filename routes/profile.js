@@ -87,6 +87,7 @@ const upload = multer({ storage });
 
 // Save Photo
 router.post("/set-photo", upload.array("photos", 6), (req, res) => {
+  console.log("📸 Received Files:", req.files);
   const { profileId } = req.body;
 
   // Check if profileId is provided and if files are uploaded
@@ -96,6 +97,7 @@ router.post("/set-photo", upload.array("photos", 6), (req, res) => {
 
   // Extract file paths from uploaded files
   const photoPaths = req.files.map((file) => file.filename);
+  console.log("✅ Saved File Names:", photoPaths); // 🔥 Debugging log
 
   // Prepare values for bulk insert into the gallery table
   const values = photoPaths.map((photoPath) => [profileId, photoPath]);
