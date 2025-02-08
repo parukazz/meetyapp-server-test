@@ -109,7 +109,8 @@ router.post("/set-photo", upload.array("photos", 6), (req, res) => {
     res.status(201).json({
       message: "Photos Uploaded!",
       uploadedFiles: photoPaths.map(
-        (filename) => `http://localhost:5000/uploads/${filename}`
+        (filename) =>
+          `https://meetyapp-server-test-production.up.railway.app/uploads/${filename}`
       ), // Return full URLs
     });
   });
@@ -180,7 +181,7 @@ router.get("/user-profile/:userId", (req, res) => {
 
       profile.photo_profile =
         photoResults.length > 0
-          ? `http://localhost:5000/uploads/${photoResults[0].image}`
+          ? `https://meetyapp-server-test-production.up.railway.app/uploads/${photoResults[0].image}`
           : null;
 
       // Fetch user interest
@@ -214,7 +215,8 @@ router.get("/user-profile/:userId", (req, res) => {
               }
 
               profile.gallery = galleryResults.map(
-                (img) => `http://localhost:5000/uploads/${img.image}`
+                (img) =>
+                  `https://meetyapp-server-test-production.up.railway.app/uploads/${img.image}`
               );
 
               // Return profile
@@ -338,7 +340,7 @@ router.put("/edit-profile/:userId", upload.single("photo"), (req, res) => {
                 return res.status(200).json({
                   message: "Profile updated successfully!",
                   newProfilePhoto: newPhoto
-                    ? `http://localhost:5000/uploads/${newPhoto}`
+                    ? `https://meetyapp-server-test-production.up.railway.app/uploads/${newPhoto}`
                     : null,
                 });
               }
@@ -421,7 +423,7 @@ router.get("/home/:userId", (req, res) => {
             ...profile,
             age,
             photo_profile: profile.photo_profile
-              ? `http://localhost:5000/uploads/${profile.photo_profile}`
+              ? `https://meetyapp-server-test-production.up.railway.app/uploads/${profile.photo_profile}`
               : null,
             gallery: [],
             interests: [],
